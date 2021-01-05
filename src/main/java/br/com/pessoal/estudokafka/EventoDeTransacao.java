@@ -23,14 +23,6 @@ public class EventoDeTransacao {
         return valor;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
-
     @Override
     public String toString() {
         return "EventoDeTransacao{" +
