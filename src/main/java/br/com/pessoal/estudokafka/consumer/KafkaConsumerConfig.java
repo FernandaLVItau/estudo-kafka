@@ -39,8 +39,8 @@ public class KafkaConsumerConfig {
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getConsumer().getGroupId());
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, kafkaProperties.getConsumer().getAutoOffsetReset());
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "minha-aplicacao");
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 
         return properties;
     }

@@ -23,22 +23,23 @@ public class ProdutorDeTransacao {
     private int numTeste;
 
 
-    public void enviarMensagem(EventoDeTransacao message) {
+    public void enviarMensagem(EventoDeTransacao evento) {
 
         ListenableFuture<SendResult<String, EventoDeTransacao>> future =
-                kafkaTemplate.send(topicName, message);
+                kafkaTemplate.send(topicName, evento);
 
-        future.addCallback(new ListenableFutureCallback<SendResult<String, EventoDeTransacao>>() {
+        future.addCallback(new ListenableFutureCallback<>() {
 
             @Override
             public void onSuccess(SendResult<String, EventoDeTransacao> result) {
-                System.out.println("Enviado evento=[" + message +
+                System.out.println("Enviado evento=[" + evento +
                         "] com offset=[" + result.getRecordMetadata().offset() + "]");
             }
+
             @Override
             public void onFailure(Throwable ex) {
                 System.out.println("Evento nao enviado=["
-                        + message + "] mensagem da excecao: " + ex.getMessage());
+                        + evento + "] mensagem da excecao: " + ex.getMessage());
             }
         });
     }
@@ -51,9 +52,6 @@ public class ProdutorDeTransacao {
         BigDecimal valor = new BigDecimal("10.0");
 
         EventoDeTransacao evento = new EventoDeTransacao(id, valor);
-
-        String mensagem = "{\"id\":\""+id+"\", \"valor\":\""+valor+"\"}";
-
 
         enviarMensagem(evento);
     }
