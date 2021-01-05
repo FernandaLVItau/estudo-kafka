@@ -13,6 +13,6 @@ public class ConsumidorDeTransacao {
 
     @KafkaListener(topics = "${spring.kafka.topic.transactions}")
     public void ouvir(EventoDeTransacao evento) {
-        System.out.println(evento);
+        System.out.println("Recebido evento: "+evento);
     }
 }
